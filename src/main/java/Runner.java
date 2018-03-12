@@ -26,5 +26,7 @@ public class Runner {
         List<Book> books3 = DBHelper.getAll("Book");
 
         List<Book> booksByAuthor1 = DBHelper.getBooks(author1.getId());
+
+        Author thisAuthor = DBHelper.findAuthorById(author1.getId());
     }
 }

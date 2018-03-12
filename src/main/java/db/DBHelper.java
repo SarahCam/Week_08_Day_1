@@ -1,5 +1,6 @@
 package db;
 
+import models.Author;
 import models.Book;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -90,6 +91,26 @@ public class DBHelper {
             session.close();
         }
         return books;
+    }
+
+    public static Author findAuthorById(int id){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Author> author = null;
+        try {
+            transaction = session.beginTransaction();
+            String hql = "from Author WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setInteger("id", id);
+            author = query.list();
+            transaction.commit();
+        } catch (HibernateException e){
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return author.get(0);
+
     }
 
 
