@@ -24,5 +24,7 @@ public class Runner {
 
         DBHelper.delete(book2);
         List<Book> books3 = DBHelper.getAll("Book");
+
+        List<Book> booksByAuthor1 = DBHelper.getBooks(author1.getId());
     }
 }
